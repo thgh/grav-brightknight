@@ -1,0 +1,14 @@
+/*
+!.gitignore
+
+!/pages
+
+# !/plugins
+# /plugins/*
+# !/plugins/some-plugin
+
+!/themes
+/themes/*
+!/themes/modulo
+
+.DS_Store

@@ -1,0 +1,27 @@
+name: Modulo
+version: 0.1.0
+description: Modular blocks for pages in JAM-stack 
+icon: rebel
+author:
+  name: Thomas Ghysels
+  email: info@thomasg.be
+homepage: https://github.com/thgh/grav-theme-modulo
+demo: https://brightknight.eu
+keywords: grav, theme, modular
+bugs: https://github.com/thgh/grav-theme-modulo/issues
+readme: https://github.com/thgh/grav-theme-modulo/blob/develop/README.md
+license: MIT
+
+form:
+  validation: loose
+  fields:
+    dropdown.enabled:
+        type: toggle
+        label: Dropdown in Menu
+        highlight: 1
+        default: 1
+        options:
+          1: PLUGIN_ADMIN.ENABLED
+          0: PLUGIN_ADMIN.DISABLED
+        validate:
+          type: bool
