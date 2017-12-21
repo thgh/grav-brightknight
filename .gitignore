@@ -3,9 +3,9 @@
 
 !/pages
 
-# !/plugins
-# /plugins/*
-# !/plugins/some-plugin
+!/plugins
+/plugins/*
+!/plugins/pages-json
 
 !/themes
 /themes/*

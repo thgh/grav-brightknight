@@ -1,0 +1,31 @@
+name: Pages Json
+version: 0.1.0
+description: do
+icon: plug
+author:
+  name: do
+  email: do@do.do
+homepage: https://github.com/do/grav-plugin-pages-json
+demo: http://demo.yoursite.com
+keywords: grav, plugin, etc
+bugs: https://github.com/do/grav-plugin-pages-json/issues
+docs: https://github.com/do/grav-plugin-pages-json/blob/develop/README.md
+license: MIT
+
+form:
+  validation: strict
+  fields:
+    enabled:
+      type: toggle
+      label: Plugin status
+      highlight: 1
+      default: 0
+      options:
+        1: Enabled
+        0: Disabled
+      validate:
+        type: bool
+    text_var:
+      type: text
+      label: Text Variable
+      help: Text to add to the top of a page
