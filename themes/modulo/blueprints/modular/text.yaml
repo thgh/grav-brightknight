@@ -1,0 +1,3 @@
+title: Text
+'@extends': default
+template: json
