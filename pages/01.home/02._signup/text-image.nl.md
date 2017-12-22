@@ -1,6 +1,6 @@
 ---
 title: 'Ontdekken hoe u tijd kan besparen?'
-media_order: 'Screen Shot 2017-12-20 at 08.29.18.png'
+media_order: 'smile-at-screen.png'
 ---
 
 ## Ontdekken hoe u tijd kan besparen?
