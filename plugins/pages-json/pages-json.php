@@ -22,11 +22,33 @@ class PagesJsonPlugin extends Plugin
     {
         // Don't proceed if we are in the admin plugin
         if ($this->isAdmin()) {
+            $this->enable([
+                'onAdminAfterSave'     => ['deploy', 0],
+                'onAdminAfterSaveAs'   => ['deploy', 0],
+                'onAdminAfterDelete'   => ['deploy', 0],
+                'onAdminAfterAddMedia' => ['deploy', 0],
+                'onAdminAfterDelMedia' => ['deploy', 0],
+            ]);
             return;
         }
         $this->enable([
                 'onPageInitialized' => ['onPageInitialized', 0]
             ]);
+    }
+
+    public function deploy()
+    {
+        $url = 'https://api.netlify.com/build_hooks/5a3d00afdf99530f51afb532';
+
+        $parts = parse_url($url);
+        $fp = fsockopen($parts['host'],isset($parts['port'])?$parts['port']:80,$errno, $errstr, 30);
+        $out = "POST ".$parts['path']." HTTP/1.1\r\n";
+        $out.= "Host: ".$parts['host']."\r\n";
+        $out.= "Content-Length: 0"."\r\n";
+        $out.= "Connection: Close\r\n\r\n";
+
+        fwrite($fp, $out);
+        fclose($fp);
     }
 
     public function onPageInitialized()
@@ -40,8 +62,6 @@ class PagesJsonPlugin extends Plugin
         $pageArray['language'] = $page->language();
         $pageArray['template'] = $page->template();
         $pageArray['html'] = $parsedown->text($pageArray['content']);
-        $pageArray['path'] = $page->path();
-        $pageArray['id'] = $page->id();
         $pageArray['slug'] = $page->slug();
 
         $uri = new Uri();
@@ -58,8 +78,6 @@ class PagesJsonPlugin extends Plugin
             $child = $item->toArray();
             $child['language'] = $item->language();
             $child['template'] = $item->template();
-            $child['path'] = $item->path();
-            $child['id'] = $item->id();
             $child['slug'] = $item->slug();
             foreach ($item->media()->toArray() as $name => $media) {
                 $child['media'][] = $uri . $media->url();
